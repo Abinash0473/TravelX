@@ -1,0 +1,25 @@
+<% layout("/layouts/boilerplate") %>
+
+<h3>All Listings</h3>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+  <% if (allListings.length === 0) { %>
+    <div class="col-12">
+      <p>No listings available at this moment. Please check back later!</p>
+    </div>
+  <% } else { %>
+    <% for (let listing of allListings) { %>
+      <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="card col listing-card" style="width: 20rem;">
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="<%= listing.title %> image" style="object-fit: cover; height: 20rem;" />
+          <div class="card-img-overlay custom-overlay">abcd</div> 
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %></h5>
+            <p class="card-text"><%= listing.description %></p>
+            <p class="card-text">Price: $<%= listing.price %></p>
+            <p class="card-text">Location: <%= listing.location %>, <%= listing.country %></p>
+          </div>
+        </div>
+      </a>
+    <% } %>
+  <% } %>
+</div>
